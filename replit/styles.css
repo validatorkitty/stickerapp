@@ -1,0 +1,291 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #f8f9fa;
+    --paper-white: #ffffff;
+    --sketch-black: #2d3436;
+    --sketch-gray: #636e72;
+    --accent-blue: #74b9ff;
+    --accent-yellow: #ffeaa7;
+    --accent-pink: #fd79a8;
+    --accent-green: #55efc4;
+    --shadow-sketch: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Architects Daughter', cursive;
+    background-color: var(--bg-color);
+    color: var(--sketch-black);
+    line-height: 1.6;
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    background-color: var(--paper-white);
+    border-bottom: 3px solid var(--sketch-black);
+    border-image: repeating-linear-gradient(
+        90deg,
+        var(--sketch-black) 0,
+        var(--sketch-black) 10px,
+        transparent 10px,
+        transparent 20px
+    ) 3;
+    position: relative;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--sketch-black);
+    transform: skewY(-0.5deg);
+}
+
+h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--sketch-black);
+    transform: rotate(-1deg);
+    margin-bottom: 0.5rem;
+    text-shadow: 3px 3px 0px var(--accent-yellow);
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: var(--sketch-gray);
+    letter-spacing: 2px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem 4rem;
+}
+
+.collapsible-section {
+    margin-bottom: 2rem;
+    background-color: var(--paper-white);
+    border: 3px solid var(--sketch-black);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sketch);
+    transform: rotate(-0.3deg);
+    transition: transform 0.3s ease;
+}
+
+.collapsible-section:nth-child(even) {
+    transform: rotate(0.3deg);
+}
+
+.collapsible-section:hover {
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+.section-header {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background-color: var(--paper-white);
+    border: none;
+    border-bottom: 2px dashed var(--sketch-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--sketch-black);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.section-header:hover {
+    background-color: var(--accent-yellow);
+}
+
+.section-header::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-pink);
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.section-title {
+    flex: 1;
+    text-align: left;
+    padding-left: 1.5rem;
+}
+
+.toggle-icon {
+    font-size: 2.5rem;
+    font-weight: 700;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.collapsible-section.active .toggle-icon {
+    transform: rotate(45deg);
+}
+
+.collapsible-section.active .section-header {
+    border-bottom: 2px solid var(--sketch-black);
+}
+
+.section-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    padding: 0 2rem;
+}
+
+.collapsible-section.active .section-content {
+    max-height: 2000px;
+    padding: 2rem;
+}
+
+.prototype-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.prototype-card {
+    background-color: var(--paper-white);
+    border: 3px solid var(--sketch-black);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sketch);
+    transition: all 0.3s ease;
+    position: relative;
+    transform: rotate(-0.5deg);
+}
+
+.prototype-card:nth-child(2n) {
+    transform: rotate(0.5deg);
+}
+
+.prototype-card:nth-child(3n) {
+    transform: rotate(-0.3deg);
+}
+
+.prototype-card::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 10%;
+    width: 50px;
+    height: 25px;
+    background-color: var(--accent-yellow);
+    border: 2px solid var(--sketch-black);
+    border-radius: 2px;
+    transform: rotate(-2deg);
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.prototype-card:hover {
+    transform: rotate(0deg) translateY(-5px);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+    border-color: var(--accent-blue);
+}
+
+.thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: var(--bg-color);
+    border: 2px dashed var(--sketch-gray);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.placeholder-img {
+    font-size: 4rem;
+    opacity: 0.6;
+}
+
+.prototype-card h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--sketch-black);
+    border-bottom: 2px solid var(--accent-green);
+    display: inline-block;
+    padding-bottom: 2px;
+}
+
+.prototype-card p {
+    font-size: 1rem;
+    color: var(--sketch-gray);
+    line-height: 1.5;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--paper-white);
+    border-top: 3px solid var(--sketch-black);
+    margin-top: 3rem;
+    font-size: 1.1rem;
+    color: var(--sketch-gray);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .container {
+        padding: 0 1rem 2rem;
+    }
+    
+    .section-header {
+        font-size: 1.5rem;
+        padding: 1rem 1.5rem;
+    }
+    
+    .section-title {
+        padding-left: 1rem;
+    }
+    
+    .prototype-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .collapsible-section.active .section-content {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+}
